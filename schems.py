@@ -1,11 +1,14 @@
-from pydantic import BaseModel, Field, EmailStr, field_validator, model_validator
+from typing import Annotated
+
+from pydantic import BaseModel, ConfigDict, Field, EmailStr, StringConstraints, field_validator, model_validator
 
 
+Name = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
 
 class BaseUser(BaseModel):
     email : EmailStr = Field( max_length=255)
-    firstname: str = Field( max_length=100)
-    lastname:str = Field( max_length=100)
+    firstname: Name
+    lastname: Name
 
 
 class UserIn(BaseUser):
@@ -29,5 +32,7 @@ class UserIn(BaseUser):
         return self
 
 class UserOut(BaseUser):
-    pass
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
     
