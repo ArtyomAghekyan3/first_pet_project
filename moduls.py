@@ -9,6 +9,7 @@ class Base(DeclarativeBase):
 class UsersModel(Base):
     __tablename__='users'
 
+
     id :Mapped[int]=mapped_column(primary_key=True)
     email :Mapped[str]=mapped_column(String(255),unique=True,index=True)
     firstname:Mapped[str]=mapped_column(String(100))
@@ -21,6 +22,8 @@ class UsersModel(Base):
 
 class DocumentsModel(Base):
     __tablename__='documents'
+
+
     id:Mapped[int]=mapped_column(primary_key=True)
     owner_id:Mapped[int]=mapped_column(ForeignKey(UsersModel.id, ondelete="CASCADE"),index=True)
     content:Mapped[str]=mapped_column(Text)
