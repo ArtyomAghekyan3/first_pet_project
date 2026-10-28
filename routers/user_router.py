@@ -1,5 +1,5 @@
 
-from database import get_user,sessionDep,create_user,delete_user
+from database import create_db, get_user,sessionDep,create_user,delete_user, update_user
 from schems import UpdateUser, UserOut,UserIn
 from fastapi import APIRouter
 
@@ -23,15 +23,24 @@ def create_user_on_page(data:UserIn,session:sessionDep):
 
 
 @router.delete("/delete_user/{user_id}")
-def delete_user_by_id_ob_page(user_id:int,session:sessionDep):
+def delete_user_by_id_on_page(user_id:int,session:sessionDep):
     return delete_user(user_id=user_id, session=session)
 
 
 @router.patch("/update_user/{user_id}")
 def update_user_by_id_on_page(user_id:int,data:UpdateUser,session:sessionDep):
-    user=get_user(user_id=user_id, session=session)
-    for field, value in data.model_dump(exclude_unset=True).items():
-        setattr(user, field, value)
-
+    user=update_user(
+        user_id=user_id,
+        data=data.model_dump(exclude_unset=True),
+        session=session
+        )
     session.commit()
     return {"message":"User updated successfully","user_id":user.id}
+
+@router.post('/reset_db')
+def reset_database():
+    create_db()
+    return {"message": "Database reset successfully"}
+   
+    
+    
