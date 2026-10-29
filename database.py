@@ -64,12 +64,14 @@ def delete_user(user_id: int,session:sessionDep):
     return {"message":"User deleted successfully","user_id":user_id}
 
     
-def update_user(user_id: int, data: dict, session: sessionDep):
+def update_user(user_id: int, data: dict, session: sessionDep):  
     user = get_user(user_id=user_id, session=session)
     for field, value in data.items():
         setattr(user, field, value)
     session.commit()
     return user
+
+
 
 def get_document_from_db(document_id: int, session: sessionDep):
     query = select(DocumentsModel).where(DocumentsModel.id == document_id)
@@ -92,7 +94,6 @@ def delete_document(document_id: int, session: sessionDep):
     session.delete(document)
     session.commit()
     return {"message": "Document deleted successfully", "document_id": document_id}
-
 
 def get_documents(session: sessionDep):
     query = select(DocumentsModel)

@@ -1,4 +1,4 @@
-from sqlalchemy.orm import  DeclarativeBase,Mapped,mapped_column
+from sqlalchemy.orm import  DeclarativeBase,Mapped,mapped_column,relationship
 from sqlalchemy import Text, func,DateTime,String,ForeignKey
 from datetime import datetime
 
@@ -19,6 +19,8 @@ class UsersModel(Base):
         server_default=func.now(),)
     hashed_password :Mapped[str]
 
+    documents:Mapped[list["DocumentsModel"]]=relationship(back_populates="user",cascade="all, delete-orphan")
+
 
 class DocumentsModel(Base):
     __tablename__='documents'
@@ -32,3 +34,4 @@ class DocumentsModel(Base):
         DateTime(timezone=True),
         server_default=func.now(),
     )
+    owner:Mapped["UsersModel"]=relationship(back_populates="documents")
