@@ -18,6 +18,7 @@ class UsersModel(Base):
         DateTime(timezone=True),
         server_default=func.now(),)
     hashed_password :Mapped[str]
+    sex:Mapped[str]=mapped_column(String(10),default='male',server_default='male')
 
     documents:Mapped[list["DocumentsModel"]]=relationship(back_populates="user",cascade="all, delete-orphan")
 
@@ -34,4 +35,4 @@ class DocumentsModel(Base):
         DateTime(timezone=True),
         server_default=func.now(),
     )
-    owner:Mapped["UsersModel"]=relationship(back_populates="documents")
+    user:Mapped["UsersModel"]=relationship(back_populates="documents")
