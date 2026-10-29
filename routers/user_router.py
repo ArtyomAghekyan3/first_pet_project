@@ -1,7 +1,8 @@
 
-from database import create_db, get_user,sessionDep,create_user,delete_user, update_user
+from database import  get_user,sessionDep,create_user,delete_user, update_user,create_db
 from schems import UpdateUser, UserOut,UserIn
 from fastapi import APIRouter
+
 
 router = APIRouter(prefix="/users", tags=["users"])
 
