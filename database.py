@@ -95,7 +95,7 @@ def delete_document(document_id: int, session: sessionDep):
     session.commit()
     return {"message": "Document deleted successfully", "document_id": document_id}
 
-def get_documents(session: sessionDep):
-    query = select(DocumentsModel)
+def get_documents_by_user(user_id: int, session: sessionDep):
+    query = select(DocumentsModel).where(DocumentsModel.owner_id == user_id)
     documents = session.execute(query).scalars().all()
     return documents
