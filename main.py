@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from database import create_db
+
 from routers.user_router import router as user_router
 from routers.documents_router import router as documents_router
 import uvicorn
