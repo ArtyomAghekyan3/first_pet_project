@@ -29,7 +29,7 @@ class DocumentsModel(Base):
 
     id:Mapped[int]=mapped_column(primary_key=True)
     owner_id:Mapped[int]=mapped_column(ForeignKey(UsersModel.id, ondelete="CASCADE"),index=True)
-    content:Mapped[str]=mapped_column(Text)
+    content: Mapped[str | None] = mapped_column(Text)
     title:Mapped[str]=mapped_column(String(128))
     created_at:Mapped[datetime]=mapped_column(
         DateTime(timezone=True),
