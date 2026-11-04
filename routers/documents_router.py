@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from database import  get_documents, get_user,sessionDep,get_document_from_db,create_document,delete_document
+from database import   sessionDep,get_document_from_db,create_document,delete_document,get_documents_by_user
 router = APIRouter(prefix="/documents", tags=["documents"])
 
 @router.get("/get_document/{document_id}")
@@ -15,9 +15,7 @@ def create_document_on_page(title: str, session: sessionDep, owner_id: int, cont
 def delete_document_on_page(document_id: int, session: sessionDep):
     return delete_document(document_id=document_id, session=session)
 
-@router.get("/get_documents")
-def get_documents_on_page(session: sessionDep):
-    return get_documents(session=session)
-
-    
+@router.get("/get_documents_by_user/{user_id}")
+def get_documents_by_user_endpoint(user_id: int, session: sessionDep):
+    return get_documents_by_user(user_id=user_id, session=session)
 
