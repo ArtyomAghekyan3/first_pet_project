@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     DB_PORT: int
     DB_NAME: str
     DB_HOST: str
+    DEEPSEEK_API_KEY: str
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
@@ -20,5 +21,8 @@ class Settings(BaseSettings):
             port=self.DB_PORT,
             database=self.DB_NAME,
         )
+    @property
+    def deepseek_api_key(self) -> str:
+        return self.DEEPSEEK_API_KEY
 
 settings = Settings()
