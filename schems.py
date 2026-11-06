@@ -60,3 +60,6 @@ class DocumentRead(BaseModel):
     title: str
     content: str | None
     owner_id: int
+
+class llmContentSchems(BaseModel):
+    content: str = Field(min_length=1, max_length=500)
