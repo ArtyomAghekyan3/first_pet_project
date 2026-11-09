@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine,select
 from sqlalchemy.orm import sessionmaker ,Session
 from config import settings
-from moduls import Base,UsersModel,DocumentsModel
+from moduls import UsersModel,DocumentsModel
 from typing import Annotated
 from fastapi import Depends, HTTPException
 from security import hash_password_func
@@ -12,11 +12,6 @@ engine=create_engine(settings.database_url,echo=True)
 new_session=sessionmaker(engine,expire_on_commit=False)
 
 
-def create_db():
-    engine.echo=False
-    Base.metadata.drop_all(engine,checkfirst=True)
-    Base.metadata.create_all(engine)
-    engine.echo=False
 
         
 def get_db():
