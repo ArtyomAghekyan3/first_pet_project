@@ -36,3 +36,12 @@ class DocumentsModel(Base):
         server_default=func.now(),
     )
     user:Mapped["UsersModel"]=relationship(back_populates="documents")
+
+class ChatMessageModel(Base):
+    __tablename__ = "chat_messages"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    session_id: Mapped[str] = mapped_column(index=True)
+    role: Mapped[str]
+    content: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(server_default=func.now())

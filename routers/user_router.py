@@ -1,5 +1,5 @@
 
-from database import  get_user,sessionDep,create_user,delete_user, update_user,create_db
+from database import  get_user,sessionDep,create_user,delete_user, update_user
 from schems import UpdateUser, UserOut,UserIn
 from fastapi import APIRouter
 
@@ -38,10 +38,7 @@ def update_user_by_id_on_page(user_id:int,data:UpdateUser,session:sessionDep):
     session.commit()
     return {"message":"User updated successfully","user_id":user.id}
 
-@router.post('/reset_db')
-def reset_database():
-    create_db()
-    return {"message": "Database reset successfully"}
+
    
     
     

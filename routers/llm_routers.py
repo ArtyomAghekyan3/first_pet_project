@@ -8,7 +8,6 @@ router = APIRouter(prefix="/llm", tags=["api"])
 
 @router.post("/get_response", response_class=EventSourceResponse)
 async def get_llm_response(content: llmContentSchems):
-    async for kind, data in stream_response_from_llm(content.content):
-        
-        yield ServerSentEvent(event=kind, data=data)
+     async for kind, data in stream_response_from_llm(content.session_id, content.content):
+       yield ServerSentEvent(event=kind, data=data)
         
