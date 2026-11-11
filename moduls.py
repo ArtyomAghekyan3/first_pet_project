@@ -1,6 +1,7 @@
 from sqlalchemy.orm import  DeclarativeBase,Mapped,mapped_column,relationship
 from sqlalchemy import Text, func,DateTime,String,ForeignKey
 from datetime import datetime
+from pgvector.sqlalchemy import VECTOR
 
 
 class Base(DeclarativeBase):
@@ -45,3 +46,16 @@ class ChatMessageModel(Base):
     role: Mapped[str]
     content: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+
+class ChunkModel(Base):
+    __tablename__ = "chunks"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    document_id: Mapped[int] = mapped_column(ForeignKey(DocumentsModel.id, ondelete="CASCADE"), index=True)
+    content: Mapped[str] = mapped_column(Text)
+    chunk_id: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    embedding: Mapped[list[float]] = mapped_column(
+    VECTOR(1024)
+)
+    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    document: Mapped["DocumentsModel"] = relationship(back_populates="chunks")
