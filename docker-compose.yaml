@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:18
+    image: pgvector/pgvector:pg18
     environment:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
