@@ -1,7 +1,7 @@
 from sqlalchemy.orm import  DeclarativeBase,Mapped,mapped_column,relationship
 from sqlalchemy import Text, func,DateTime,String,ForeignKey
 from datetime import datetime
-from pgvector.sqlalchemy import VECTOR
+from pgvector.sqlalchemy import Vector
 
 
 class Base(DeclarativeBase):
@@ -55,7 +55,7 @@ class ChunkModel(Base):
     content: Mapped[str] = mapped_column(Text)
     chunk_id: Mapped[str] = mapped_column(String(255), unique=True, index=True)
     embedding: Mapped[list[float]] = mapped_column(
-    VECTOR(1024)
+    Vector(384)
 )
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     document: Mapped["DocumentsModel"] = relationship(back_populates="chunks")
