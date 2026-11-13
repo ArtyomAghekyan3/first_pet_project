@@ -37,6 +37,10 @@ class DocumentsModel(Base):
         server_default=func.now(),
     )
     user:Mapped["UsersModel"]=relationship(back_populates="documents")
+    chunks: Mapped[list["ChunkModel"]] = relationship(
+        back_populates="document",
+        cascade="all, delete-orphan"
+    )
 
 class ChatMessageModel(Base):
     __tablename__ = "chat_messages"
