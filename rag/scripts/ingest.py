@@ -8,78 +8,47 @@ from ..chunking import chunk_text
 from ..embeddings import embed_texts
 
 
-def process_document(
-    filename: str,
-    file_bytes: bytes,
-    owner_id: int,
-    session: Session
-):
+import hashlib
+from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
+
+def process_document(filename, file_bytes, owner_id, session):
+    h = hashlib.sha256(file_bytes).hexdigest()
+
+    def find_existing():
+        return session.scalar(select(DocumentsModel.id).where(
+            DocumentsModel.owner_id == owner_id, DocumentsModel.content_hash == h))
+
+    existing = find_existing()
+    session.commit()
+    if existing is not None:
+        return {"document_id": existing, "filename": filename, "status": "already_exists"}
+
+    text = extract_text(filename, file_bytes)
+    chunks = chunk_text(text, chunk_size=800, overlap=100)
+    if not chunks:
+        raise ValueError("Документ пустой")
+    embeddings = embed_texts([c["content"] for c in chunks])
+    if len(chunks) != len(embeddings):
+        raise RuntimeError("Chunks and embeddings count mismatch")
 
     try:
-        
-        text = extract_text(filename, file_bytes)
-
-       
-        document = DocumentsModel(
-            owner_id=owner_id,
-            title=filename[:128],
-            content=text
-        )
-
+        document = DocumentsModel(owner_id=owner_id, title=filename[:128],
+                                  content=text, content_hash=h)
         session.add(document)
-
-      
         session.flush()
-
-       
-        chunks = chunk_text(
-            text,
-            chunk_size=800,
-            overlap=100
-        )
-
-       
-        contents = [
-            chunk["content"]
-            for chunk in chunks
-        ]
-
-       
-        embeddings = embed_texts(contents)
-
-       
-        if len(chunks) != len(embeddings):
-            raise ValueError("Chunks and embeddings count mismatch")
-
-        
-        db_chunks = []
-
-        for chunk, embedding in zip(chunks, embeddings):
-
-            db_chunk = ChunkModel(
-                document_id=document.id,
-                content=chunk["content"],
-                chunk_id=f"{document.id}:{chunk['index']}",
-                embedding=embedding
-            )
-
-            db_chunks.append(db_chunk)
-
-       
-        session.add_all(db_chunks)
-
-        
+        session.add_all([
+            ChunkModel(document_id=document.id, content=c["content"],
+                       chunk_id=f"{document.id}:{c['index']}", embedding=e)
+            for c, e in zip(chunks, embeddings)
+        ])
         session.commit()
-
-        session.refresh(document)
-
-        return {
-            "document_id": document.id,
-            "filename": filename,
-            "chunks_created": len(db_chunks),
-            "status": "success"
-        }
-
+    except IntegrityError:
+        session.rollback()
+        return {"document_id": find_existing(), "filename": filename, "status": "already_exists"}
     except Exception:
         session.rollback()
         raise
+
+    return {"document_id": document.id, "filename": filename,
+            "chunks_created": len(chunks), "status": "created"}

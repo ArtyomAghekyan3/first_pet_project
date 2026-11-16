@@ -1,5 +1,5 @@
 from sqlalchemy.orm import  DeclarativeBase,Mapped,mapped_column,relationship
-from sqlalchemy import Text, func,DateTime,String,ForeignKey
+from sqlalchemy import Text, UniqueConstraint, func,DateTime,String,ForeignKey
 from datetime import datetime
 from pgvector.sqlalchemy import Vector
 
@@ -26,7 +26,8 @@ class UsersModel(Base):
 
 class DocumentsModel(Base):
     __tablename__='documents'
-
+    __table_args__ = (UniqueConstraint("owner_id", "content_hash", name="uq_documents_owner_hash"),)
+    
 
     id:Mapped[int]=mapped_column(primary_key=True)
     owner_id:Mapped[int]=mapped_column(ForeignKey(UsersModel.id, ondelete="CASCADE"),index=True)
@@ -36,6 +37,7 @@ class DocumentsModel(Base):
         DateTime(timezone=True),
         server_default=func.now(),
     )
+    content_hash: Mapped[str | None] = mapped_column(String(64))
     user:Mapped["UsersModel"]=relationship(back_populates="documents")
     chunks: Mapped[list["ChunkModel"]] = relationship(
         back_populates="document",
