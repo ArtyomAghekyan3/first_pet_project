@@ -75,11 +75,7 @@ def get_document_from_db(document_id: int, session: sessionDep):
         raise HTTPException(status_code=404, detail="Document not found")
     return document
 
-def create_document(title: str, content: str, owner_id: int, session: sessionDep):
-    document = DocumentsModel(title=title, content=content, owner_id=owner_id)
-    session.add(document)
-    session.commit()
-    return document
+
 
 def delete_document(document_id: int, session: sessionDep):
     query = select(DocumentsModel).where(DocumentsModel.id == document_id)

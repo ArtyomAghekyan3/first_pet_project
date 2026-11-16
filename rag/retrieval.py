@@ -1,0 +1,35 @@
+from embeddings import embed_texts
+from moduls import ChunkModel
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from rag.embeddings import embed_texts
+
+
+def search_similar_chunks(
+    session: Session,
+    query: str,
+    limit: int = 3
+):
+    # 1. Создаём embedding пользовательского вопроса
+    query_embedding = embed_texts([query])[0]
+
+    # 2. Вычисляем cosine distance
+    distance = ChunkModel.embedding.cosine_distance(
+        query_embedding
+    )
+
+    # 3. Создаём SQL-запрос
+    stmt = (
+        select(
+            ChunkModel,
+            distance.label("distance")
+        )
+        .order_by(distance.asc())
+        .limit(limit)
+    )
+
+    # 4. Выполняем запрос
+    result = session.execute(stmt)
+
+    # 5. Возвращаем найденные чанки
+    return result.all()

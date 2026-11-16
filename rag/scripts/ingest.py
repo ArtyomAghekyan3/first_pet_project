@@ -1,13 +1,9 @@
-from sqlalchemy.orm import Session
 
 from moduls import DocumentsModel
 from moduls import ChunkModel
-
 from ..file_changer import extract_text
 from ..chunking import chunk_text
 from ..embeddings import embed_texts
-
-
 import hashlib
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
