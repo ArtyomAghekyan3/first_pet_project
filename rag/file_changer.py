@@ -9,7 +9,7 @@ def extract_text(filename: str, file_bytes: bytes) -> str:
 
     extension = Path(filename).suffix.lower()
 
-    if extension == ".txt":
+    if extension == ".txt" or extension == ".md":
         text = file_bytes.decode("utf-8-sig")
 
     elif extension == ".pdf":

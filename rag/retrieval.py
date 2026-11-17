@@ -1,8 +1,8 @@
-from embeddings import embed_texts
+from .embeddings import embed_texts
 from moduls import ChunkModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from rag.embeddings import embed_texts
+
 
 
 def search_similar_chunks(
