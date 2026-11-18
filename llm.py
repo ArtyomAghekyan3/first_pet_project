@@ -100,7 +100,7 @@ async def stream_response_from_llm(
             elapsed = time.perf_counter() - start
             u = chunk.usage
 
-            with open("llm_usage.log", "a") as f:
+            with open("notes/llm_usage.log", "a") as f:
                 f.write(
                     f"LLM usage: "
                     f"prompt={u.prompt_tokens} "
