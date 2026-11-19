@@ -115,7 +115,7 @@ async def stream_response_from_llm(
     answer = "".join(answer_parts)
 
 
-      # 8. Источники: только реально процитированные и существующие номера
+    # 8. Источники: только реально процитированные и существующие номера
     cited = {int(n) for n in CITATION_RE.findall(answer)}
     sources = [
         {

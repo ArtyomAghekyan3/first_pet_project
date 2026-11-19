@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     DB_NAME: str
     DB_HOST: str
     DEEPSEEK_API_KEY: str
+    JWT_SECRET_KEY: str
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
@@ -24,5 +25,9 @@ class Settings(BaseSettings):
     @property
     def deepseek_api_key(self) -> str:
         return self.DEEPSEEK_API_KEY
+    
+    @property
+    def jwt_secret_key(self) -> str:
+        return self.JWT_SECRET_KEY
 
 settings = Settings()
