@@ -36,3 +36,7 @@ LLM usage: prompt=1490 completion=84 total=1574 time=1.54s
 LLM usage: prompt=1856 completion=164 total=2020 time=1.81s
 LLM usage: prompt=2114 completion=88 total=2202 time=1.15s
 LLM usage: prompt=1742 completion=564 total=2306 time=4.02s
+LLM usage: prompt=1328 completion=697 total=2025 time=5.46s
+LLM usage: prompt=1328 completion=838 total=2166 time=6.01s
+LLM usage: prompt=1328 completion=674 total=2002 time=5.02s
+LLM usage: prompt=1328 completion=905 total=2233 time=6.11s
