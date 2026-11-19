@@ -51,7 +51,7 @@ class ChatMessageModel(Base):
     session_id: Mapped[str] = mapped_column(index=True)
     role: Mapped[str]
     content: Mapped[str] = mapped_column(Text)
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True),server_default=func.now(),)
 
 class ChunkModel(Base):
     __tablename__ = "chunks"
@@ -63,5 +63,5 @@ class ChunkModel(Base):
     embedding: Mapped[list[float]] = mapped_column(
     Vector(384)
 )
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True),server_default=func.now(),)
     document: Mapped["DocumentsModel"] = relationship(back_populates="chunks")
