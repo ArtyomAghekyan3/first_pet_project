@@ -22,11 +22,11 @@ def get_db():
 sessionDep=Annotated[Session, Depends(get_db)]
 
 
-def create_user(email:str,firstname:str,lastname:str,hashed_password:str,session:sessionDep):
+def create_user(email:str,firstname:str,lastname:str,password:str,session:sessionDep):
     query=select(UsersModel).filter(UsersModel.email==email)
     if session.execute(query).scalars().first():
         raise HTTPException(status_code=409, detail="Email already exists")
-    hashed_password=hash_password_func(hashed_password)
+    hashed_password=hash_password_func(password)
   
     user=UsersModel(
                 email=email,
