@@ -1,5 +1,5 @@
 
-from database import  get_user,sessionDep,create_user,delete_user, update_user
+from database import  get_user,sessionDep,delete_user, update_user
 from schems import UpdateUser, UserOut
 from fastapi import APIRouter
 

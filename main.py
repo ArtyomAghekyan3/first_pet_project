@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from routers.auth_router import router as auth_router
 from routers.user_router import router as user_router
 from routers.documents_router import router as documents_router

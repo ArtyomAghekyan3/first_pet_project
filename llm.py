@@ -23,6 +23,7 @@ async def stream_response_from_llm(
     session_id: str,
     content: str,
     session: AsyncSession,
+    owner_id: int
 ):
     start = time.perf_counter()
 
@@ -34,6 +35,7 @@ async def stream_response_from_llm(
         session=session,
         query=content,
         limit=5,
+        owner_id=owner_id
     )
 
     # 3. Формируем контекст из найденных чанков

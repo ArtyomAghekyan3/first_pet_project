@@ -1,5 +1,5 @@
 from .embeddings import embed_texts
-from moduls import ChunkModel
+from moduls import ChunkModel, DocumentsModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -8,7 +8,9 @@ from sqlalchemy.orm import Session
 def search_similar_chunks(
     session: Session,
     query: str,
-    limit: int = 3
+    owner_id: int,
+    limit: int = 3,
+    
 ):
     # 1. Создаём embedding пользовательского вопроса
     query_embedding = embed_texts([query])[0]
@@ -24,6 +26,8 @@ def search_similar_chunks(
             ChunkModel,
             distance.label("distance")
         )
+        .join(ChunkModel.document)
+        .where(DocumentsModel.owner_id == owner_id)
         .order_by(distance.asc())
         .limit(limit)
     )

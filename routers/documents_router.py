@@ -1,10 +1,8 @@
 from typing import Annotated
-
 from fastapi import APIRouter, Depends,File,UploadFile, HTTPException
-from sqlalchemy import select
 from auth.dependencies import get_current_user
 from database import   sessionDep,get_document_from_db,delete_document,get_documents_by_user
-from moduls import DocumentsModel, UsersModel
+from moduls import  UsersModel
 from rag.scripts.ingest import process_document
 
 router = APIRouter(prefix="/documents", tags=["documents"])
@@ -12,7 +10,6 @@ router = APIRouter(prefix="/documents", tags=["documents"])
 @router.get("/get_document/{document_id}")
 def get_document(document_id: int, session: sessionDep):
     return get_document_from_db(document_id=document_id, session=session)
-
 
 
 @router.delete("/delete_document/{document_id}",)
