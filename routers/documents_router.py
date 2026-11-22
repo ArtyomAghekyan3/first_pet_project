@@ -8,8 +8,14 @@ from rag.scripts.ingest import process_document
 router = APIRouter(prefix="/documents", tags=["documents"])
 
 @router.get("/get_document/{document_id}")
-def get_document(document_id: int, session: sessionDep):
-    return get_document_from_db(document_id=document_id, session=session)
+def get_document(document_id: int,
+                session: sessionDep,
+                current_user: Annotated[
+        UsersModel,
+        Depends(get_current_user)
+    ]):
+
+    return get_document_from_db(document_id=document_id, session=session, user_id=current_user.id)
 
 
 @router.delete("/delete_document/{document_id}",)
@@ -20,17 +26,15 @@ def delete_document_on_page(document_id: int, session: sessionDep,
                                                 ]):
     return delete_document(document_id=document_id, session=session,user_id=current_user.id)
 
-@router.get("/get_documents_by_user/{user_id}")
-def get_documents_by_user_endpoint(user_id: int, session: sessionDep):
-    return get_documents_by_user(user_id=user_id, session=session)
-
 @router.post("/document_to_chunks")
 def upload_document(
-    owner_id: int,
-    session: sessionDep ,
-    file: UploadFile = File(...),
     
-):
+    session: sessionDep ,
+    current_user: Annotated[
+        UsersModel,
+        Depends(get_current_user)],
+    file: UploadFile = File(...),
+    ):
 
     try:
         file_bytes = file.file.read()
@@ -38,7 +42,7 @@ def upload_document(
         result = process_document(
             filename=file.filename,
             file_bytes=file_bytes,
-            owner_id=owner_id,
+            owner_id=current_user.id,
             session=session
         )
 

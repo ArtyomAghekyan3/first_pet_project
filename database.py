@@ -59,7 +59,7 @@ def delete_user(user_id: int,session:sessionDep):
     return {"message":"User deleted successfully","user_id":user_id}
 
     
-def update_user(user_id: int, data: dict, session: sessionDep):  
+def update_user(user_id: int, data: dict, session: sessionDep,use):  
     user = get_user(user_id=user_id, session=session)
     for field, value in data.items():
         setattr(user, field, value)
@@ -68,11 +68,13 @@ def update_user(user_id: int, data: dict, session: sessionDep):
 
 
 
-def get_document_from_db(document_id: int, session: sessionDep):
+def get_document_from_db(document_id: int, session: sessionDep, user_id: int):
     query = select(DocumentsModel).where(DocumentsModel.id == document_id)
     document = session.execute(query).scalars().first()
     if not document:
         raise HTTPException(status_code=404, detail="Document not found")
+    if document.owner_id != user_id:
+        raise HTTPException(status_code=403, detail="Not allowed to access this document")
     return document
 
 
