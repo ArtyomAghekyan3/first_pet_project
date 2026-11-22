@@ -28,7 +28,7 @@ async def stream_response_from_llm(
     start = time.perf_counter()
 
     # 1. Получаем историю диалога
-    history = await get_history(session_id)
+    history = await get_history(session_id, owner_id=owner_id, limit=5)
 
     # 2. Ищем похожие чанки в PostgreSQL
     chunks =  search_similar_chunks(
@@ -136,4 +136,4 @@ async def stream_response_from_llm(
     # 9. В историю сохраняем ответ без ссылок [n]
     if answer:
         clean_answer = re.sub(r"\s*\[\d+\]", "", answer)
-        await save_exchange(session_id, content, clean_answer)
+        await save_exchange(session_id, content, clean_answer, owner_id=owner_id)

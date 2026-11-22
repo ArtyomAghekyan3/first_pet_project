@@ -47,3 +47,10 @@ LLM usage: prompt=190 completion=132 total=322 time=1.79s
 LLM usage: prompt=302 completion=84 total=386 time=1.54s
 LLM usage: prompt=1075 completion=471 total=1546 time=3.28s
 LLM usage: prompt=1353 completion=233 total=1586 time=2.55s
+LLM usage: prompt=376 completion=80 total=456 time=1.77s
+LLM usage: prompt=882 completion=475 total=1357 time=4.91s
+LLM usage: prompt=1121 completion=459 total=1580 time=4.06s
+LLM usage: prompt=1504 completion=453 total=1957 time=4.17s
+LLM usage: prompt=1700 completion=491 total=2191 time=4.52s
+LLM usage: prompt=1079 completion=326 total=1405 time=2.34s
+LLM usage: prompt=1302 completion=108 total=1410 time=1.34s

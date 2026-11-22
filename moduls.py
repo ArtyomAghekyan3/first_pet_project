@@ -46,9 +46,10 @@ class DocumentsModel(Base):
 
 class ChatMessageModel(Base):
     __tablename__ = "chat_messages"
-
+    
     id: Mapped[int] = mapped_column(primary_key=True)
     session_id: Mapped[str] = mapped_column(index=True)
+    owner_id: Mapped[int | None] = mapped_column(ForeignKey(UsersModel.id, ondelete="CASCADE"), index=True, nullable=True,server_default=None)
     role: Mapped[str]
     content: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True),server_default=func.now(),)
