@@ -126,7 +126,7 @@ async def stream_response_from_llm(
             "document": chunk.document.title,
             "chunk_index": chunk.chunk_id,
             
-            #"similarity": round(similarity, 4),
+            "similarity": round(1-similarity, 4),
         }
         for i, (chunk, similarity) in enumerate(chunks, start=1)
         if i in cited

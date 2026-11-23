@@ -1,8 +1,9 @@
-from io import BytesIO
+from io import BytesIO, StringIO
 from pathlib import Path
 
 from pypdf import PdfReader
 from docx import Document
+import csv
 
 
 def extract_text(filename: str, file_bytes: bytes) -> str:
@@ -27,6 +28,17 @@ def extract_text(filename: str, file_bytes: bytes) -> str:
             paragraph.text
             for paragraph in document.paragraphs
         )
+    elif extension == ".csv":
+        csv_text = file_bytes.decode("utf-8-sig")
+
+        reader = csv.reader(StringIO(csv_text))
+
+        rows = []
+
+        for row in reader:
+            rows.append(" | ".join(row))
+
+        text = "\n".join(rows)
 
     else:
         raise ValueError("Unsupported file format")

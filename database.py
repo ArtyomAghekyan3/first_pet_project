@@ -7,7 +7,7 @@ from fastapi import Depends, HTTPException
 from security import hash_password_func
 
 
-engine=create_engine(settings.database_url,echo=True)
+engine=create_engine(settings.database_url,echo=False)
 
 new_session=sessionmaker(engine,expire_on_commit=False)
 

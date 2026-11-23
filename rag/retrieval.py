@@ -32,8 +32,12 @@ def search_similar_chunks(
         .limit(limit)
     )
 
+
     # 4. Выполняем запрос
-    result = session.execute(stmt)
+    result = session.execute(stmt).all()
+    for row in result:
+        chunk, distance_value = row
+        print(f"Chunk ID: {chunk.id}, Document: {chunk.document.title}, Distance: {1-distance_value}")
 
     # 5. Возвращаем найденные чанки
-    return result.all()
+    return result
