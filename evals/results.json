@@ -1376,69 +1376,15 @@
       }
     ],
     "reference_answer": "Нет. Возможность требовать замену без экспертизы действует в первые 15 дней; через 20 дней этот срок уже прошёл.",
-    "actual_answer": "Нет. Замена без экспертизы для электроники возможна только в первые 15 дней после покупки при существенном недостатке [2][3]. Поскольку телевизор сломался через 20 дней, замена без экспертизы уже недоступна [1].\n\nВы можете потребовать возврат денег после экспертизы, если дефект подтвердится [1]. Экспертиза бесплатна, если дефект не вызван вашими действиями; если будет установлено, что причина — действия покупателя, её стоимость составит 1500 ₽ [3][4].",
-    "sources": [
-      {
-        "ref": 1,
-        "document_id": 6,
-        "document": "email_03.txt",
-        "chunk_index": "6:0",
-        "similarity": 0.5051
-      },
-      {
-        "ref": 2,
-        "document_id": 16,
-        "document": "kb_07_defective_item.md",
-        "chunk_index": "16:0",
-        "similarity": 0.4725
-      },
-      {
-        "ref": 3,
-        "document_id": 23,
-        "document": "warranty.md",
-        "chunk_index": "23:0",
-        "similarity": 0.46
-      },
-      {
-        "ref": 4,
-        "document_id": 23,
-        "document": "warranty.md",
-        "chunk_index": "23:1",
-        "similarity": 0.3652
-      }
-    ],
-    "usage": {
-      "completion_tokens": 435,
-      "prompt_tokens": 1072,
-      "total_tokens": 1507,
-      "completion_tokens_details": {
-        "accepted_prediction_tokens": null,
-        "audio_tokens": null,
-        "reasoning_tokens": 301,
-        "rejected_prediction_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_tokens_details": {
-        "audio_tokens": null,
-        "cache_write_tokens": null,
-        "cached_tokens": 0,
-        "image_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_cache_hit_tokens": 0,
-      "prompt_cache_miss_tokens": 1072
-    },
-    "latency_sec": 32.529,
+    "actual_answer": "",
+    "sources": [],
+    "usage": {},
+    "latency_sec": 0.0,
     "status": "error",
-    "error": "'in <string>' requires string as left operand, not list",
+    "error": "stream_response_from_llm() got an unexpected keyword argument 'limit'",
     "answer_contains_ref": false,
     "doc_hit": false,
-    "cited_docs": [
-      "email_03.txt",
-      "kb_07_defective_item.md",
-      "warranty.md",
-      "warranty.md"
-    ]
+    "cited_docs": []
   },
   {
     "id": 30,
@@ -1459,53 +1405,15 @@
       }
     ],
     "reference_answer": "Потраченные при оплате баллы возвращаются полностью, а начисленный за заказ кешбэк аннулируется.",
-    "actual_answer": "При возврате заказа начисленный за него кешбэк аннулируется [1][2]. Бонусные баллы, которые вы списали при оплате, возвращаются на счёт в полном объёме [2].",
-    "sources": [
-      {
-        "ref": 1,
-        "document_id": 15,
-        "document": "kb_06_loyalty_points.md",
-        "chunk_index": "15:0",
-        "similarity": 0.6297
-      },
-      {
-        "ref": 2,
-        "document_id": 20,
-        "document": "returns.md",
-        "chunk_index": "20:1",
-        "similarity": 0.5725
-      }
-    ],
-    "usage": {
-      "completion_tokens": 272,
-      "prompt_tokens": 988,
-      "total_tokens": 1260,
-      "completion_tokens_details": {
-        "accepted_prediction_tokens": null,
-        "audio_tokens": null,
-        "reasoning_tokens": 216,
-        "rejected_prediction_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_tokens_details": {
-        "audio_tokens": null,
-        "cache_write_tokens": null,
-        "cached_tokens": 0,
-        "image_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_cache_hit_tokens": 0,
-      "prompt_cache_miss_tokens": 988
-    },
-    "latency_sec": 33.359,
+    "actual_answer": "",
+    "sources": [],
+    "usage": {},
+    "latency_sec": 0.0,
     "status": "error",
-    "error": "'in <string>' requires string as left operand, not list",
+    "error": "stream_response_from_llm() got an unexpected keyword argument 'limit'",
     "answer_contains_ref": false,
     "doc_hit": false,
-    "cited_docs": [
-      "kb_06_loyalty_points.md",
-      "returns.md"
-    ]
+    "cited_docs": []
   },
   {
     "id": 31,
@@ -1526,45 +1434,15 @@
       }
     ],
     "reference_answer": "Если товар подходит под критерий крупногабаритного, доставка стоит 990 ₽; бесплатно она предоставляется от 30 000 ₽, поэтому при 28 000 ₽ будет платной.",
-    "actual_answer": "Для крупногабаритного заказа доставка стоит **990 ₽**, а бесплатной она становится только при сумме заказа **от 30 000 ₽** [2].  \n\nПри сумме **28 000 ₽** доставка **не будет бесплатной** — нужно будет оплатить **990 ₽** [2].  \n\nДополнительно: подъём на этаж оплачивается отдельно — **150 ₽ за этаж без лифта** [2].",
-    "sources": [
-      {
-        "ref": 2,
-        "document_id": 2,
-        "document": "delivery.md",
-        "chunk_index": "2:1",
-        "similarity": 0.6116
-      }
-    ],
-    "usage": {
-      "completion_tokens": 378,
-      "prompt_tokens": 1573,
-      "total_tokens": 1951,
-      "completion_tokens_details": {
-        "accepted_prediction_tokens": null,
-        "audio_tokens": null,
-        "reasoning_tokens": 268,
-        "rejected_prediction_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_tokens_details": {
-        "audio_tokens": null,
-        "cache_write_tokens": null,
-        "cached_tokens": 0,
-        "image_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_cache_hit_tokens": 0,
-      "prompt_cache_miss_tokens": 1573
-    },
-    "latency_sec": 35.402,
+    "actual_answer": "",
+    "sources": [],
+    "usage": {},
+    "latency_sec": 0.0,
     "status": "error",
-    "error": "'in <string>' requires string as left operand, not list",
+    "error": "stream_response_from_llm() got an unexpected keyword argument 'limit'",
     "answer_contains_ref": false,
     "doc_hit": false,
-    "cited_docs": [
-      "delivery.md"
-    ]
+    "cited_docs": []
   },
   {
     "id": 32,
@@ -1585,53 +1463,15 @@
       }
     ],
     "reference_answer": "Если заказ не передан в доставку более 2 рабочих дней после оплаты, нужно написать в чат с номером заказа. Первый ответ в чате ожидается за 5 минут в рабочее время.",
-    "actual_answer": "Статус заказа можно проверить в личном кабинете в разделе «Мои заказы» [1].  \nЕсли заказ не передан в доставку более 2 рабочих дней после оплаты, нужно написать в чат поддержки и указать номер заказа [1].\n\nПо регламенту поддержки первый ответ в чате — за 5 минут в рабочее время с 08:00 до 23:00 [2].",
-    "sources": [
-      {
-        "ref": 1,
-        "document_id": 11,
-        "document": "kb_01_where_is_my_order.md",
-        "chunk_index": "11:0",
-        "similarity": 0.6812
-      },
-      {
-        "ref": 2,
-        "document_id": 22,
-        "document": "support_escalation.md",
-        "chunk_index": "22:0",
-        "similarity": 0.6501
-      }
-    ],
-    "usage": {
-      "completion_tokens": 340,
-      "prompt_tokens": 881,
-      "total_tokens": 1221,
-      "completion_tokens_details": {
-        "accepted_prediction_tokens": null,
-        "audio_tokens": null,
-        "reasoning_tokens": 239,
-        "rejected_prediction_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_tokens_details": {
-        "audio_tokens": null,
-        "cache_write_tokens": null,
-        "cached_tokens": 0,
-        "image_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_cache_hit_tokens": 0,
-      "prompt_cache_miss_tokens": 881
-    },
-    "latency_sec": 35.832,
+    "actual_answer": "",
+    "sources": [],
+    "usage": {},
+    "latency_sec": 0.0,
     "status": "error",
-    "error": "'in <string>' requires string as left operand, not list",
+    "error": "stream_response_from_llm() got an unexpected keyword argument 'limit'",
     "answer_contains_ref": false,
     "doc_hit": false,
-    "cited_docs": [
-      "kb_01_where_is_my_order.md",
-      "support_escalation.md"
-    ]
+    "cited_docs": []
   },
   {
     "id": 33,
@@ -1652,61 +1492,15 @@
       }
     ],
     "reference_answer": "На возврат есть 14 дней с момента получения; деньги возвращают в течение 7 рабочих дней после поступления товара на склад.",
-    "actual_answer": "По действующему регламенту (редакция от 01.09.2026) вернуть товар надлежащего качества можно в течение **14 дней** с момента получения [1]. Деньги возвращаются в течение **7 рабочих дней** после поступления товара на склад [1]; если оплата была картой, банк может обработать возврат ещё до **5 рабочих дней** [1][2]. Если прошло больше 12 рабочих дней, следует обратиться в поддержку [2].\n\nВ старом письме 2024 года указаны 10 дней и 10 рабочих дней [3], но действующая редакция регламента устанавливает 14 дней и 7 рабочих дней [1].",
-    "sources": [
-      {
-        "ref": 1,
-        "document_id": 20,
-        "document": "returns.md",
-        "chunk_index": "20:0",
-        "similarity": 0.7502
-      },
-      {
-        "ref": 2,
-        "document_id": 12,
-        "document": "kb_03_refund_timing.md",
-        "chunk_index": "12:0",
-        "similarity": 0.675
-      },
-      {
-        "ref": 3,
-        "document_id": 3,
-        "document": "email_00_internal_2024_OUTDATED.txt",
-        "chunk_index": "3:0",
-        "similarity": 0.6407
-      }
-    ],
-    "usage": {
-      "completion_tokens": 995,
-      "prompt_tokens": 983,
-      "total_tokens": 1978,
-      "completion_tokens_details": {
-        "accepted_prediction_tokens": null,
-        "audio_tokens": null,
-        "reasoning_tokens": 837,
-        "rejected_prediction_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_tokens_details": {
-        "audio_tokens": null,
-        "cache_write_tokens": null,
-        "cached_tokens": 0,
-        "image_tokens": null,
-        "text_tokens": null
-      },
-      "prompt_cache_hit_tokens": 0,
-      "prompt_cache_miss_tokens": 983
-    },
-    "latency_sec": 40.987,
+    "actual_answer": "",
+    "sources": [],
+    "usage": {},
+    "latency_sec": 0.0,
     "status": "error",
-    "error": "'in <string>' requires string as left operand, not list",
+    "error": "stream_response_from_llm() got an unexpected keyword argument 'limit'",
     "answer_contains_ref": false,
     "doc_hit": false,
-    "cited_docs": [
-      "returns.md",
-      "kb_03_refund_timing.md",
-      "email_00_internal_2024_OUTDATED.txt"
-    ]
+    "cited_docs": []
   },
   {
     "id": 34,

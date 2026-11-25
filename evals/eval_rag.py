@@ -59,6 +59,7 @@ async def run_single_question(
                     content=question,
                     session=session,
                     owner_id=owner_id,
+                    limit=5,
                 ):
                     if kind == "content":
                         # В SSE-роутере data уходит как JSON-строка; внутри stream_response_from_llm это str
